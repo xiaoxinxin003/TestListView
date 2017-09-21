@@ -30,6 +30,54 @@ public class MainActivity extends Activity {
         initView();
         initData();
         initListener();
+
+        int nums[] = {2,6,5,11,8};
+        int target = 10;
+        solution(nums, target);
+    }
+
+    /**
+     *
+     * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+     You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+     Example:
+     Given nums = [2, 7, 11, 15], target = 9,
+
+     Because nums[0] + nums[1] = 2 + 7 = 9,
+     return [0, 1].
+     * @param nums
+     * @param target
+     * @return
+     */
+    private int[] solution(int[] nums, int target) {
+//        int results[] = new int[2];
+//        int x = 0;
+//        while (x < nums.length) {
+//            for (int y  = x+1; y < nums.length; y++) {
+//                if ((nums[x] + nums[y]) == target) {
+//                    results[0] = x;
+//                    results[1] = y;
+//                    Log.d(TAG, "results is :" + results[0] + " and :" + results[1]);
+//                    return results;
+//                }
+//            }
+//            x++;
+//        }
+//        return results;
+
+        HashMap<Integer, Integer> hashmap = new HashMap<Integer, Integer>();
+
+        for(int i = 0; i < nums.length; i++) {
+            if(hashmap.containsKey(nums[i])) {
+                Log.d(TAG, "results is :" + hashmap.get(nums[i]) + " and :" + i);
+                return new int[]{hashmap.get(nums[i]), i};
+            } else {
+                hashmap.put(target - nums[i], i);
+            }
+        }
+        return null;
     }
 
     private void initView() {
